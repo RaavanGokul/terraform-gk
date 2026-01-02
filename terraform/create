@@ -1,0 +1,101 @@
+create the pythin code for get eks cludster informations 
+import boto3
+def get_eks_cluster_info(cluster_name):
+    eks = boto3.client('eks')
+    response = eks.describe_cluster(name=cluster_name)
+    return response['cluster']
+cluster_info = get_eks_cluster_info('your-cluster-name')
+print(cluster_info)
+
+need all the resources
+in the eks cluster version ,node groups ,pods ,services etc
+import boto3       
+def get_eks_cluster_info(cluster_name):
+    eks = boto3.client('eks')
+    response = eks.describe_cluster(name=cluster_name)
+    return response['cluster']
+def list_nodegroups(cluster_name):
+    eks = boto3.client('eks')
+    response = eks.list_nodegroups(clusterName=cluster_name)
+    return response['nodegroups']
+def get_nodegroup_info(cluster_name, nodegroup_name):
+    eks = boto3.client('eks')
+    response = eks.describe_nodegroup(clusterName=cluster_name, nodegroupName=nodegroup_name)
+    return response['nodegroup']
+cluster_name = 'your-cluster-name'
+cluster_info = get_eks_cluster_info(cluster_name)
+print("Cluster Info:", cluster_info)
+nodegroups = list_nodegroups(cluster_name)
+for ng in nodegroups:
+    ng_info = get_nodegroup_info(cluster_name, ng)
+    print("Node Group Info:", ng_info)
+import boto3
+
+def get_eks_cluster_info(cluster_name):
+
+    eks = boto3.client('eks')
+    response = eks.describe_cluster(name=cluster_name)
+    return response['cluster']
+def list_nodegroups(cluster_name):
+    eks = boto3.client('eks')
+    response = eks.list_nodegroups(clusterName=cluster_name)
+    return response['nodegroups']
+def get_nodegroup_info(cluster_name, nodegroup_name):
+    eks = boto3.client('eks')
+    response = eks.describe_nodegroup(clusterName=cluster_name, nodegroupName=nodegroup_name)
+    return response['nodegroup']
+def list_pods(cluster_name, namespace):
+    eks = boto3.client('eks')
+    response = eks.list_pods(clusterName=cluster_name, namespace=namespace)
+    return response['pods']
+def list_services(cluster_name, namespace):
+    eks = boto3.client('eks')
+    response = eks.list_services(clusterName=cluster_name, namespace=namespace)
+    return response['services']    
+cluster_name = 'your-cluster-name'
+cluster_info = get_eks_cluster_info(cluster_name)
+print("Cluster Info:", cluster_info)
+nodegroups = list_nodegroups(cluster_name)
+
+for ng in nodegroups:
+    ng_info = get_nodegroup_info(cluster_name, ng)
+    print("Node Group Info:", ng_info)
+namespace = 'default'
+pods = list_pods(cluster_name, namespace)
+print("Pods in namespace", namespace, ":", pods)
+services = list_services(cluster_name, namespace)
+print("Services in namespace", namespace, ":", services)
+import boto3
+
+def get_eks_cluster_info(cluster_name):
+    eks = boto3.client('eks')
+    response = eks.describe_cluster(name=cluster_name)
+    return response['cluster']
+    def list_nodegroups(cluster_name):
+    eks = boto3.client('eks')
+    response = eks.list_nodegroups(clusterName=cluster_name)
+    return response['nodegroups']
+
+def get_nodegroup_info(cluster_name, nodegroup_name):
+    eks = boto3.client('eks')
+    response = eks.describe_nodegroup(clusterName=cluster_name, nodegroupName=nodegroup_name)
+    return response['nodegroup']
+
+def list_pods(cluster_name, namespace):
+    eks = boto3.client('eks')
+    response = eks.list_pods(clusterName=cluster_name, namespace=namespace)
+    return response['pods']
+
+def list_services(cluster_name, namespace):
+    eks = boto3.client('eks')
+    response = eks.list_services(clusterName=cluster_name, namespace=namespace)
+    return response['services']
+
+
+
+explain this code step by step
+This code is designed to interact with Amazon EKS (Elastic Kubernetes) clusters using the Boto3 library, which is the AWS SDK for Python. Here's a step-by-step explanation of what each part of the code does:1. Importing Boto3:
+   The code starts by importing the Boto3 library, which is necessary for making API calls to AWS services. 2. Defining Functions:                      
+    - get_eks_cluster_info(cluster_name): This function takes the name of an EKS cluster as an argument and retrieves detailed information about that cluster using the describe_cluster API call. It returns the cluster information.
+    - list_nodegroups(cluster_name): This function lists all the node groups associated with a given EKS cluster. It uses the list_nodegroups API call and returns a list of node group names.
+    
